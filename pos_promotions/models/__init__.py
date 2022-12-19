@@ -1,0 +1,1 @@
+from . import promotions_pos, product

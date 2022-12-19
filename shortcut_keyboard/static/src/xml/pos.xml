@@ -1,0 +1,11 @@
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="PaymentScreen-Paymentmethods">
+        <t t-jquery=".paymentmethods .paymentmethod" t-operation='append'>
+            <t t-if="payment_method.shortcut">
+                (<t t-esc="payment_method.shortcut"/>)
+            </t>
+        </t>
+    </t>
+
+</templates>

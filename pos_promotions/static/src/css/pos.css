@@ -1,0 +1,6 @@
+.promotions-container {
+    padding: 16px;
+    padding-top: 0;
+    border-bottom: dashed 1px gainsboro;
+    min-height: 154px;
+}

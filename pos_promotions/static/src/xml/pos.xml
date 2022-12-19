@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentScreen-Promotions">
+        <t t-if="promotions">
+            <div>
+                <center><h2>Promotions</h2></center>
+                <table style="width:100%; font-size: 15px;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="promotions" t-as="promo">
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td><t t-esc="promo.display_name"/></td>
+                                <td><t t-esc="promo.quantity"/></td>
+                                <td><t t-esc="widget.format_currency(promo.price)"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </t>
+    
+    <t t-inherit="point_of_sale.PaymentScreenWidget" t-inherit-mode="extension">
+        <xpath expr="//section[hasclass('paymentlines-container')]" position="after">
+            <section class='promotions-container'>
+            </section>
+        </xpath>
+    </t>
+    
+
+</templates>

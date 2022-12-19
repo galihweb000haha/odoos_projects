@@ -1,0 +1,1 @@
+from . import pos_shortcut_config, pos_payment_method, account_journal

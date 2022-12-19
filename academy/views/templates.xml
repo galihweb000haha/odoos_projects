@@ -1,0 +1,41 @@
+<odoo>
+
+    <template id="index">
+        <t t-call="website.layout">
+            <t t-set="title">Academy</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <h1> Contacts </h1>
+                    <p class="text-muted">You can select the item !</p>
+                    <ol>
+                      <t t-foreach="contacts" t-as="contact">
+                          <li>
+                            <a t-attf-href="#{base_url}/academy/detail/#{contact.id}"><span t-esc="contact.name"/> </a>
+                          </li>
+                      </t>
+                    </ol>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="detail">
+      <t t-call="website.layout">
+        <t t-set="title">Academy</t>
+        <div class="oe_structure">
+
+          <div class="container">
+              <t t-foreach="contacts" t-as="contact">
+                <ul>
+                      <li><h1 t-esc="contact.name" /></li>
+                      <li><span t-esc="contact.age"/></li>
+                      <li><span t-esc="contact.title"/></li>
+                      <li><span t-esc="contact.description"/></li>
+                </ul>
+              </t>
+          </div>
+        </div>
+      </t>
+    </template>
+
+</odoo>

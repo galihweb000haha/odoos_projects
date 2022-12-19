@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_company_indonesia" model="res.company">
+        <field name="name">Indonesia</field>
+        <field name="currency_id" ref="base.IDR"/>
+    </record>
+    <record id="ir_company_united_kingdom" model="res.company">
+        <field name="name">United Kingdom</field>
+        <field name="currency_id" ref="base.GBP"/>
+    </record>
+    <record id="ir_company_australia" model="res.company">
+        <field name="name">Australia</field>
+        <field name="currency_id" ref="base.AUD"/>
+    </record>
+    <record id="ir_company_india" model="res.company">
+        <field name="name">India</field>
+        <field name="currency_id" ref="base.INR"/>
+    </record>
+</odoo>
+
+<!-- FYI : to delete the record you can use this command : -->
+<!-- <delete model="res.company" id="ir_company_indonesia"/> -->

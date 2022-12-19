@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_admin_indonesia" model="res.users">
+        <field name="login">purchaseindo</field>
+        <field name="password">purchaseindo</field>
+        <field name="name">Galih Situmorang</field>
+        <field name="company_id" ref="access_rights_companies.ir_company_indonesia"/>
+        <field name="company_ids" eval="[(4, ref('access_rights_companies.ir_company_indonesia'))]"/>
+    </record>
+
+    <record id="purchase_admin_united_kingdom" model="res.users">
+        <field name="login">purchaseuk</field>
+        <field name="password">purchaseuk</field>
+        <field name="name">Galih Simatupang</field>
+        <field name="company_id" ref="access_rights_companies.ir_company_united_kingdom"/>
+        <field name="company_ids" eval="[(4, ref('access_rights_companies.ir_company_united_kingdom'))]"/>
+    </record>
+
+    <record id="purchase_admin_australia" model="res.users">
+        <field name="login">purchaseaus</field>
+        <field name="password">purchaseaus</field>
+        <field name="name">Galih Panjahitan</field>
+        <field name="company_id" ref="access_rights_companies.ir_company_australia"/>
+        <field name="company_ids" eval="[(4, ref('access_rights_companies.ir_company_australia'))]"/>
+    </record>
+</odoo>

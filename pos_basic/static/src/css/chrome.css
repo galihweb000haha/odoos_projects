@@ -1,0 +1,12 @@
+.username {
+    color: #999;
+}
+.selected-mode {
+    background: #db1a6b !important;
+}
+.pos-topheader {
+    background: #db1a6b !important;
+}
+.selected {
+    background: #f590bb !important;
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="member_view_tree" model="ir.ui.view">
+        <field name="name">member_view_tree</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="birthday"/>
+                <field name="email"/>
+                <field name="gender"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="member_view_form" model="ir.ui.view">
+        <field name="name">member_view_form</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <div class="oe_title">
+                    <h1>New Member</h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="birthday"/>
+                        <field name="gender"/>
+                    </group>
+                    <group>
+                        <field name="email"/> 
+                        <field name="address"/> 
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="library_book_member_action" model="ir.actions.act_window">
+        <field name="name">Member</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">member</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="member_view_tree"/>
+    </record>
+
+    <menuitem
+    id="library_book_member_library_submenu"
+    name="Member"
+    action="library_book_member_action"
+    parent="library_book_member_submenu"
+    sequence="0" />
+
+</odoo>

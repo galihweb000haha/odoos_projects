@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="promotions_pos_form_view" model="ir.ui.view">
+        <field name="name">Promotions</field>
+        <field name="model">promotions.pos</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="condition"/>
+                        <field name="min_amount" attrs="{'invisible':[ ('condition', '!=', 'minimum_amount')]}" />
+                        <field name="spec_date" attrs="{'invisible':[ ('condition', '!=', 'specific_date')]}" />
+                    </group>
+                    <group>
+                        <field name="gift_type" />
+                        <field name="product_id" attrs="{'invisible':[ ('gift_type', '!=', 'specific_product')]}"/>
+                        <field name="disc_amount" attrs="{'invisible':[ ('gift_type', '!=', 'discount')]}" widget="monetary" />
+                        <field name="amount" attrs="{'invisible':[ ('gift_type', '!=', 'specific_product')]}" widget="monetary" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="promotions_pos_tree_view" model="ir.ui.view">
+        <field name="name">Promotions</field>
+        <field name="model">promotions.pos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="condition" />
+                <field name="gift_type" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_promotions_pos" model="ir.actions.act_window">
+        <field name="name">Promotions</field>
+        <field name="res_model">promotions.pos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_id" ref="promotions_pos_tree_view"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Promotions" id="promotions_main" sequence="100" parent="point_of_sale.menu_point_root"/>
+
+    <menuitem name="Gift" id="gift_promotions" action="action_promotions_pos" parent="promotions_main"/>
+
+</odoo>

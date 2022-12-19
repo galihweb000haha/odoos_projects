@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets" inherit_id="point_of_sale.assets" name="shortcut_keyboard_asset">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/shortcut_keyboard/static/src/js/screens.js"/>
+        </xpath>
+    </template>
+
+</odoo>

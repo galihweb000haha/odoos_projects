@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_inherit_to_invoice" name="Portal My Home : sales order to invoice entries" inherit_id="portal.portal_my_home" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="order_count" t-call="portal.portal_docs_entry">
+                <t t-set="title">Sales Orders: To Invoice</t>
+                <t t-set="url" t-value="'/my/to_invoice'"/>
+                <t t-set="count" t-value="to_invoice_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_orders_inherit_customer" name="Portal Sale Order: customer and filter" inherit_id="sale.portal_my_orders">
+
+        <xpath expr="//th[hasclass('text-right')]" position="before">
+            <th>Customer</th>
+        </xpath>
+
+        <xpath expr="//td[hasclass('text-right')]" position="before">
+            <td><span t-field="order.partner_id"/></td>
+        </xpath>
+
+        <xpath expr="//t[@t-if='orders']" position="replace">
+            <t t-if="grouped_sale_order">
+                <t t-if="orders" t-call="portal.portal_table">
+                    <t t-foreach="grouped_sale_order" t-as="orders">
+                        <thead>
+                            <tr t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}">
+                                <th t-if="groupby == 'none'">
+                                    <span class='d-none d-md-inline'>Sales Order #</span>
+                                    <span class='d-block d-md-none'>Ref.</span>
+                                </th>
+                                <th t-else="">
+                                    <em class="font-weight-normal text-muted"><span t-field="orders[0].sudo().partner_id.name"/></em></th>
+                                <th class="text-right">Order Date</th>
+                                <th class="text-center"/>
+                                <th class="text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="orders" t-as="order">
+                                <tr>
+                                    <td><a t-att-href="order.get_portal_url()"><t t-esc="order.name"/></a></td>
+                                    <td class="text-right">
+                                        <span t-field="order.date_order" t-options="{'widget': 'date'}"/>&amp;nbsp;
+                                        <span class='d-none d-md-inline' t-field="order.date_order" t-options="{'time_only': True}"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-if="order.state == 'done'"  class="badge badge-pill badge-success">
+                                            <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Done"/>Done
+                                        </span>
+                                    </td>
+                                    <td class="text-right"><span t-field="order.amount_total"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs_inherit_to_invoice" name="Portal layout : invoiceable menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'to_invoice'" t-attf-class="breadcrumb-item active">
+                To Invoice
+            </li>
+        </xpath>
+    </template>
+
+    <template id="sale_order_portal_content_inherit_customer" name="Portal Sale Order Content: Customer" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//div[@id='so_date']" position="after">
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <strong>Customer:</strong> <a t-att-href="sale_order.get_customer_url()"><t t-esc="sale_order.partner_id.name"/></a>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="sale_order_portal_template_inherit_quotation" name="Portal sale Order Sidebar: confirm button quotation" inherit_id="sale.sale_order_portal_template">
+        <xpath expr="//div[hasclass('o_download_pdf')]" position="before">
+            <div t-if="sale_order.state in ['sent']" class="btn-toolbar flex-sm-nowrap mb-2">
+                <a class="btn btn-primary btn-block" t-att-href="sale_order.confirm_quotation()" title="Confirm Quotation"><i class="fa fa-check"/> Confirm Quotation</a>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="portal_my_orders_to_invoice" name="To Invoice">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">To Invoice</t>
+            </t>
+
+            <t t-if="not to_invoices">
+                <p>There are currently no invoiceable for your account.</p>
+            </t>
+            
+            <t t-if="to_invoices" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Order Number</th>
+                        <th class="text-right">Order Date</th>
+                        <th class="text-right">Customer</th>
+                        <th class="text-right">Total</th>
+                    </tr>
+                </thead>
+                <t t-foreach="to_invoices" t-as="to_invoice">
+                    <tr>
+                        <td><a t-att-href="to_invoice.get_portal_url()"><t t-esc="to_invoice.name"/></a></td>
+                        <td class="text-right"><span t-field="to_invoice.date_order"/></td>
+                        <td class="text-right"><span t-field="to_invoice.partner_id.name"/></td>
+                        <td class="text-right">
+                            <span t-field="to_invoice.amount_total"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

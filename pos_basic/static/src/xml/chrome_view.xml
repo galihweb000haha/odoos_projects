@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-inherit="point_of_sale.Chrome" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-topheader')]" position="replace">
+            <div class="pos-topheader">
+                <div class="pos-branding">
+                    <span class="placeholder-CompanyLogoWidget"></span>
+                    <span class="placeholder-SalesPersonWidget"></span>
+                    <span class="placeholder-UsernameWidget"></span>
+                </div>
+                <div class="pos-rightheader">
+                    <span class="placeholder-OrderSelectorWidget"></span>
+                </div>
+            </div>
+        </xpath>
+    </t>
+    
+    <t t-name="SalesPersonWidget"> 
+        <span class="username">
+            <t t-esc="widget.get_name()" />
+        </span>
+    </t>
+
+    <!-- console log in view -->
+    <!-- <t t-js="ctx">console.log(ctx);</t> -->
+    <t t-name="CompanyLogoWidget"> 
+        <img class="pos-logo" t-att-src="widget.get_company_logo()" alt="Logo"/>
+    </t>
+
+    <t t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-receipt-contact')]" position="inside">
+            <t t-if='receipt.salesperson'>
+                <div> SalesPerson: <t t-esc='receipt.salesperson'/> </div>
+            </t>
+        </xpath>
+    </t>
+    
+    <t t-name="ResetButton">
+        <div class="control-button reset-button">
+            <i class="fa fa-refresh" />Clear Current Order
+        </div>
+    </t>
+    
+
+</templates>

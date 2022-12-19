@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="library_book_book_tree_view_id" model="ir.ui.view">
+        <field name="name">library_book_book_tree</field>
+        <field name="model">books</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="title"/>
+                <field name="author"/>
+                <field name="language"/>
+                <field name="publisher"/>
+                <field name="published"/>
+                <field name="genre"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="library_book_book_form_view_id" model="ir.ui.view">
+        <field name="name">library_book_book_form</field>
+        <field name="model">books</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="add_book" type="object" string="Create Data "/>
+                    <button name="delete_book" type="object" string="Delete Data "/>
+                </header>
+                <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="title" readonly="0"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="library_id"/>
+                        <field name="author"/>
+                        <field name="genre"/>
+                        <field name="publisher"/>
+                        <field name="published"/>
+                        <field name="image_128"/>
+                    </group>
+                    <group>
+                        <field name="language"/> 
+                        <field name="description"/> 
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="library_book_book_kanban_view_id" model="ir.ui.view">
+        <field name="name">library_book_book_kanban</field>
+        <field name="model">books</field>
+        <field name="arch" type="xml">
+            <kanban class="o_hr_employee_kanban">
+                <templates>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                        <field name="image_128" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+
+                        <div class="oe_kanban_details">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <h3><field name="title"/></h3>
+                                    </strong>
+                                    <span t-esc="record.author.raw_value"><field name="author"/></span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li t-if="record.publisher.raw_value" class="o_text_overflow"><field name="publisher"/></li>
+                                <li t-if="record.published.raw_value" class="o_force_ltr"><field name="published"/></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </t>
+                </templates>
+                <field name="id" attrs="{'invisible': True}"/>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="library_book_book_action" model="ir.actions.act_window">
+        <field name="name">Book</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">books</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="library_book_book_tree_view_id"/>
+    </record>
+
+    <menuitem
+    id="library_book_book_submenu"
+    name="Books"
+    action="library_book_book_action"
+    parent="library_book_submenu"
+    sequence="1" />
+</odoo>

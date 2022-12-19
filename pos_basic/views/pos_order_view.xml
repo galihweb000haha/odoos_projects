@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pos_order_inherit_list_view" model="ir.ui.view">
+        <field name="name">pos_order_inherit_list_view</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="salesperson_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="pos_order_inherit_form_view" model="ir.ui.view">
+        <field name="name">pos_order_inherit_form_view</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra']/group" position="replace">
+                <group string="General Information">
+                    <field name="location_id" widget="selection" groups="stock.group_stock_multi_locations"/>
+                    <field name="picking_id" readonly="1"/>
+                    <field name="salesperson_id" readonly="1"/>
+                    <field string="Cashier" name="user_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="data_book_1" model="books">
+        <field name="title">Sapiens</field>
+        <field name="author">Yuval Noah Harari</field>
+        <field name="language">English</field>
+        <field name="genre">Nonfiction</field>
+        <field name="publisher">Dvir Publishing House Ltd. (Israel)</field>
+    </record>
+
+    <record id="data_book_2" model="books">
+        <field name="title">Homo Deus</field>
+        <field name="author">Yuval Noah Harari</field>
+        <field name="language">English</field>
+        <field name="genre">Nonfiction</field>
+        <field name="publisher">Dvir Publishing House Ltd. (Israel)</field>
+    </record>
+
+    <record id="data_book_3" model="books">
+        <field name="title">21 LESSONS</field>
+        <field name="author">Yuval Noah Harari</field>
+        <field name="language">English</field>
+        <field name="genre">Nonfiction</field>
+        <field name="publisher">Dvir Publishing House Ltd. (Israel)</field>
+    </record>
+
+</odoo>

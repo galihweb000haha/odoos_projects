@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+galih_promotions_pos,access_galih_promotions_pos,pos_promotions.model_promotions_pos,point_of_sale.group_pos_manager,1,1,1,1

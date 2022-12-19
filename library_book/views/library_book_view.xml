@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="library_book_tree_view_id" model="ir.ui.view">
+        <field name="name">library_book_tree</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="country_id"/>
+                <field name="state_id"/>
+                <field name="city_id"/>
+                <field name="address"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="library_book_form_view_id" model="ir.ui.view">
+        <field name="name">library_book_form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="0"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="country_id"/>
+                        <field name="state_id"/>
+                        <field name="city_id"/>
+                        <field name="address"/>
+                    </group>
+                    <group>
+                        <field name="country_id"/>
+                        <field name="state_id"/>
+                        <field name="city_id"/>
+                        <field name="address"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="library_book_action" model="ir.actions.act_window">
+        <field name="name">Library</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="library_book_tree_view_id"/>
+    </record>
+
+    <menuitem
+    id="library_book_menu"
+    name="Library"
+    groups="base.group_user"
+    action="library_book_action"
+    web_icon ="library_book,static/description/icon.png"
+    sequence="0" />
+    
+    <menuitem
+    id="library_book_submenu"
+    name="Library"
+    action="library_book_action"
+    parent="library_book_menu"
+    sequence="0" />
+
+    <menuitem
+    id="library_book_member_submenu"
+    name="Member"
+    parent="library_book_menu"
+    sequence="1" />
+
+    <menuitem
+    id="library_book_library_submenu"
+    name="Library"
+    action="library_book_action"
+    parent="library_book_submenu"
+    sequence="0" />
+
+    
+    
+
+   
+    
+</odoo>
+

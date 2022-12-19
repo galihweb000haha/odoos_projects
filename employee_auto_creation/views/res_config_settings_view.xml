@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Adding new field to active / non active auto create employee  -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.auth</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_setting_box')]" position="inside">
+                <div class="o_setting_right_pane">
+                    <field name="create_employee" class="w-auto pl-3 font-weight-bold"/>
+                    <span class="o_form_label">
+                        Auto Create Employee
+                    </span>
+                    <br/>
+                    <div attrs="{'invisible': [('create_employee', '=', False)]}">
+                    <span class="o_form_label">
+                    <i style="margin-left:15px;" class="fa fa-fw o_button_icon fa-arrow-right"></i>
+                        Select Fields:
+                    </span>
+                    <br />
+                    <field name="field_ids" attrs="{'invisible': [('create_employee', '=', False)]}" widget="many2many_tags" />
+                    </div>
+                </div>                
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

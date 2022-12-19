@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_rule_company_visibility_user" model="ir.rule"> 
+        <field name="name"> Users can see all records within their company </field> 
+        <field name="model_id" ref="purchase.model_purchase_order" /> 
+        <field name="perm_read" eval="True" /> 
+        <field name="perm_write" eval="True" /> 
+        <field name="perm_create" eval="True" /> 
+        <field name="perm_unlink" eval="True" /> 
+        <field name="domain_force"> [('company_id', '=', user.company_id.id)] </field> 
+    </record>
+
+    <record id="purchase_rule_visibility_user_own" model="ir.rule"> 
+        <field name="name"> Able to see, edit and delete their own records </field> 
+        <field name="model_id" ref="purchase.model_purchase_order" /> 
+        <field name="groups" eval="[(4, ref ('group_purchase_own_documents'))]" /> 
+        <field name="perm_read" eval="True" /> 
+        <field name="perm_write" eval="True" /> 
+        <field name="perm_create" eval="True" /> 
+        <field name="perm_unlink" eval="True" /> 
+        <field name="domain_force"> [('user_id', '=', user.id)] </field> 
+    </record>
+
+    <record id="purchase_rule_visibility_user_all" model="ir.rule"> 
+        <field name="name"> Able to see all records. But can only edit and delete their own records </field> 
+        <field name="model_id" ref="purchase.model_purchase_order" /> 
+        <field name="groups" eval="[(4, ref ('group_purchase_all_documents'))]" /> 
+        <field name="perm_read" eval="False" /> 
+        <field name="perm_write" eval="True" /> 
+        <field name="perm_unlink" eval="True" /> 
+        <field name="domain_force"> [('user_id', '=', user.id)] </field> 
+    </record>
+
+</odoo>
+

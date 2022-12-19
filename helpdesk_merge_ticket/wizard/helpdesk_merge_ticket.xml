@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="helpdesk_merge_ticket_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.merge.ticket.form</field>
+        <field name="model">helpdesk.merge.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Merge Picking">
+                <group>
+                    <tree>
+                        <field name="merge_ids" />
+                    </tree>
+                </group>
+                <group>
+                    <group>
+                        <field name="ticket_target_id" required='True'/>
+                        <field name="team_id" />
+                        <field name="user_id" options="{'no_open': True}"/>
+                    </group>
+                    <group>
+                        <field name="partner_id" readonly='True' />
+                        <field name="ticket_type_id" />
+                        <field name="priority" widget="priority"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="merge_tickets" type="object" string="Merge Tickets" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <act_window id="helpdest_ticket_merge_action_helpdesk_ticket"
+        name="Merge Tickets"
+        res_model="helpdesk.merge.ticket"
+        binding_model="helpdesk.ticket"
+        binding_views="list"
+        view_mode="form" target="new"
+        />
+
+</odoo>
